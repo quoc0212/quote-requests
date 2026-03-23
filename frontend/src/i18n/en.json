@@ -1,0 +1,151 @@
+{
+  "nav": {
+    "home": "Home",
+    "admin": "Admin"
+  },
+  "hero": {
+    "badge": "Free Quote",
+    "title": "Let's Build Something",
+    "titleHighlight": "Amazing Together",
+    "subtitle": "Tell us about your project and get a personalized quote in 24 hours.",
+    "cta": "Get Started"
+  },
+  "steps": {
+    "step": "Step",
+    "of": "of",
+    "1": "Contact",
+    "2": "Services",
+    "3": "Timeline & Budget",
+    "4": "Details",
+    "5": "Confirmation"
+  },
+  "step1": {
+    "title": "Contact Information",
+    "subtitle": "Let's start with the basics. How can we reach you?",
+    "name": "Full Name",
+    "namePlaceholder": "John Doe",
+    "email": "Email Address",
+    "emailPlaceholder": "john@example.com",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+1 (555) 000-0000",
+    "company": "Company Name",
+    "companyPlaceholder": "Acme Inc. (optional)"
+  },
+  "step2": {
+    "title": "Select Services",
+    "subtitle": "What services are you looking for? Select all that apply.",
+    "atLeastOne": "Please select at least one service",
+    "other": "Other",
+    "otherPlaceholder": "Please describe your custom service requirement...",
+    "services": {
+      "Development": "Development",
+      "Web Design": "Web Design",
+      "Marketing": "Marketing",
+      "SEO": "SEO",
+      "Consulting": "Consulting",
+      "Other": "Other"
+    }
+  },
+  "step3": {
+    "title": "Timeline & Budget",
+    "subtitle": "Help us understand your project scope.",
+    "timeline": "Project Timeline",
+    "timelineOptions": {
+      "": "Select a timeline",
+      "Less than 1 month": "Less than 1 month",
+      "1-3 months": "1-3 months",
+      "3-6 months": "3-6 months",
+      "6-12 months": "6-12 months",
+      "More than 1 year": "More than 1 year"
+    },
+    "budget": "Estimated Budget",
+    "budgetOptions": {
+      "": "Select a budget range",
+      "Under $5,000": "Under $5,000",
+      "$5,000 - $15,000": "$5,000 - $15,000",
+      "$15,000 - $50,000": "$15,000 - $50,000",
+      "$50,000 - $100,000": "$50,000 - $100,000",
+      "Over $100,000": "Over $100,000"
+    }
+  },
+  "step4": {
+    "title": "Project Details",
+    "subtitle": "Tell us more about your project to get a more accurate quote.",
+    "description": "Project Description",
+    "descriptionPlaceholder": "Describe your project goals, features, and requirements...",
+    "notes": "Additional Notes",
+    "notesPlaceholder": "Any other details you'd like to share? (optional)",
+    "submit": "Submit Request"
+  },
+  "step5": {
+    "title": "We're Processing Your Request",
+    "sending": "Sending confirmation email...",
+    "sent": "Email Sent Successfully!",
+    "failed": "Email Sending Failed",
+    "sentMessage": "A confirmation email has been sent to your inbox.",
+    "failedMessage": "We couldn't send the confirmation email. Please try again.",
+    "retry": "Retry Sending",
+    "viewReport": "View Your Report",
+    "checkingStatus": "Checking email status..."
+  },
+  "report": {
+    "title": "Submission Report",
+    "back": "Back to Home",
+    "contactInfo": "Contact Information",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Company",
+    "projectDetails": "Project Details",
+    "services": "Services",
+    "timeline": "Timeline",
+    "budget": "Budget",
+    "description": "Description",
+    "notes": "Additional Notes",
+    "submittedAt": "Submitted At",
+    "emailStatus": "Email Status",
+    "notProvided": "Not provided"
+  },
+  "buttons": {
+    "next": "Next",
+    "back": "Back",
+    "submit": "Submit"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "minLength": "Must be at least {{min}} characters"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "logout": "Logout",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Sign In",
+    "loginTitle": "Admin Login",
+    "quotes": "Quote Requests",
+    "stats": "Statistics",
+    "totalRequests": "Total Requests",
+    "topService": "Top Service",
+    "emailsSent": "Emails Sent",
+    "search": "Search by name, email or company...",
+    "filterService": "Filter by service",
+    "allServices": "All Services",
+    "from": "From",
+    "to": "To",
+    "noData": "No quote requests found.",
+    "name": "Name",
+    "emailCol": "Email",
+    "services": "Services",
+    "timeline": "Timeline",
+    "budget": "Budget",
+    "status": "Email Status",
+    "date": "Date",
+    "actions": "Actions",
+    "view": "View",
+    "close": "Close",
+    "detailTitle": "Quote Details"
+  },
+  "language": "Language"
+}

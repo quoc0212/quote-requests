@@ -1,0 +1,151 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "admin": "Quản trị"
+  },
+  "hero": {
+    "badge": "Báo giá miễn phí",
+    "title": "Hãy cùng tạo ra điều",
+    "titleHighlight": "Tuyệt vời",
+    "subtitle": "Chia sẻ về dự án của bạn và nhận báo giá cá nhân hóa trong vòng 24 giờ.",
+    "cta": "Bắt đầu"
+  },
+  "steps": {
+    "step": "Bước",
+    "of": "/",
+    "1": "Liên hệ",
+    "2": "Dịch vụ",
+    "3": "Thời gian & Ngân sách",
+    "4": "Chi tiết",
+    "5": "Xác nhận"
+  },
+  "step1": {
+    "title": "Thông tin liên hệ",
+    "subtitle": "Hãy bắt đầu với những thông tin cơ bản. Chúng tôi có thể liên hệ với bạn như thế nào?",
+    "name": "Họ và tên",
+    "namePlaceholder": "Nguyễn Văn A",
+    "email": "Địa chỉ Email",
+    "emailPlaceholder": "nguyenvana@example.com",
+    "phone": "Số điện thoại",
+    "phonePlaceholder": "+84 123 456 789",
+    "company": "Tên công ty",
+    "companyPlaceholder": "Công ty ABC (tùy chọn)"
+  },
+  "step2": {
+    "title": "Chọn dịch vụ",
+    "subtitle": "Bạn đang tìm kiếm dịch vụ nào? Chọn tất cả những gì phù hợp.",
+    "atLeastOne": "Vui lòng chọn ít nhất một dịch vụ",
+    "other": "Khác",
+    "otherPlaceholder": "Vui lòng mô tả yêu cầu dịch vụ tùy chỉnh của bạn...",
+    "services": {
+      "Development": "Phát triển phần mềm",
+      "Web Design": "Thiết kế website",
+      "Marketing": "Marketing",
+      "SEO": "SEO",
+      "Consulting": "Tư vấn",
+      "Other": "Khác"
+    }
+  },
+  "step3": {
+    "title": "Thời gian & Ngân sách",
+    "subtitle": "Giúp chúng tôi hiểu phạm vi dự án của bạn.",
+    "timeline": "Thời gian dự án",
+    "timelineOptions": {
+      "": "Chọn thời gian",
+      "Less than 1 month": "Dưới 1 tháng",
+      "1-3 months": "1-3 tháng",
+      "3-6 months": "3-6 tháng",
+      "6-12 months": "6-12 tháng",
+      "More than 1 year": "Hơn 1 năm"
+    },
+    "budget": "Ngân sách dự kiến",
+    "budgetOptions": {
+      "": "Chọn khoảng ngân sách",
+      "Under $5,000": "Dưới $5,000",
+      "$5,000 - $15,000": "$5,000 - $15,000",
+      "$15,000 - $50,000": "$15,000 - $50,000",
+      "$50,000 - $100,000": "$50,000 - $100,000",
+      "Over $100,000": "Trên $100,000"
+    }
+  },
+  "step4": {
+    "title": "Chi tiết dự án",
+    "subtitle": "Cho chúng tôi biết thêm về dự án của bạn để nhận báo giá chính xác hơn.",
+    "description": "Mô tả dự án",
+    "descriptionPlaceholder": "Mô tả mục tiêu, tính năng và yêu cầu của dự án...",
+    "notes": "Ghi chú thêm",
+    "notesPlaceholder": "Có thông tin nào khác bạn muốn chia sẻ không? (tùy chọn)",
+    "submit": "Gửi yêu cầu"
+  },
+  "step5": {
+    "title": "Chúng tôi đang xử lý yêu cầu của bạn",
+    "sending": "Đang gửi email xác nhận...",
+    "sent": "Email đã được gửi thành công!",
+    "failed": "Gửi email thất bại",
+    "sentMessage": "Email xác nhận đã được gửi đến hộp thư của bạn.",
+    "failedMessage": "Chúng tôi không thể gửi email xác nhận. Vui lòng thử lại.",
+    "retry": "Thử lại",
+    "viewReport": "Xem báo cáo của bạn",
+    "checkingStatus": "Đang kiểm tra trạng thái email..."
+  },
+  "report": {
+    "title": "Báo cáo yêu cầu",
+    "back": "Về trang chủ",
+    "contactInfo": "Thông tin liên hệ",
+    "name": "Tên",
+    "email": "Email",
+    "phone": "Điện thoại",
+    "company": "Công ty",
+    "projectDetails": "Chi tiết dự án",
+    "services": "Dịch vụ",
+    "timeline": "Thời gian",
+    "budget": "Ngân sách",
+    "description": "Mô tả",
+    "notes": "Ghi chú thêm",
+    "submittedAt": "Thời gian gửi",
+    "emailStatus": "Trạng thái email",
+    "notProvided": "Chưa cung cấp"
+  },
+  "buttons": {
+    "next": "Tiếp theo",
+    "back": "Quay lại",
+    "submit": "Gửi"
+  },
+  "validation": {
+    "required": "Trường này là bắt buộc",
+    "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ",
+    "minLength": "Phải có ít nhất {{min}} ký tự"
+  },
+  "admin": {
+    "title": "Bảng điều khiển Admin",
+    "logout": "Đăng xuất",
+    "login": "Đăng nhập",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "loginButton": "Đăng nhập",
+    "loginTitle": "Đăng nhập Admin",
+    "quotes": "Yêu cầu báo giá",
+    "stats": "Thống kê",
+    "totalRequests": "Tổng yêu cầu",
+    "topService": "Dịch vụ phổ biến",
+    "emailsSent": "Email đã gửi",
+    "search": "Tìm kiếm theo tên, email hoặc công ty...",
+    "filterService": "Lọc theo dịch vụ",
+    "allServices": "Tất cả dịch vụ",
+    "from": "Từ ngày",
+    "to": "Đến ngày",
+    "noData": "Không tìm thấy yêu cầu báo giá nào.",
+    "name": "Tên",
+    "emailCol": "Email",
+    "services": "Dịch vụ",
+    "timeline": "Thời gian",
+    "budget": "Ngân sách",
+    "status": "Trạng thái Email",
+    "date": "Ngày",
+    "actions": "Hành động",
+    "view": "Xem",
+    "close": "Đóng",
+    "detailTitle": "Chi tiết báo giá"
+  },
+  "language": "Ngôn ngữ"
+}
