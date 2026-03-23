@@ -21,15 +21,15 @@
   },
   "step1": {
     "title": "Thông tin liên hệ",
-    "subtitle": "Hãy bắt đầu với những thông tin cơ bản. Chúng tôi có thể liên hệ với bạn như thế nào?",
-    "name": "Họ và tên",
+    "subtitle": "Lorem ipsum dolor sit amet consectetur adipisc.",
+    "name": "Tên",
     "namePlaceholder": "Nguyễn Văn A",
-    "email": "Địa chỉ Email",
-    "emailPlaceholder": "nguyenvana@example.com",
+    "email": "Email",
+    "emailPlaceholder": "Địa chỉ Email",
     "phone": "Số điện thoại",
     "phonePlaceholder": "+84 123 456 789",
-    "company": "Tên công ty",
-    "companyPlaceholder": "Công ty ABC (tùy chọn)"
+    "company": "Công ty",
+    "companyPlaceholder": "Tên công ty"
   },
   "step2": {
     "title": "Chọn dịch vụ",
