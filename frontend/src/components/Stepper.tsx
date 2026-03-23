@@ -1,37 +1,60 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import "./stepper.css";
 
 interface StepperProps {
-  currentStep: number;
-  totalSteps: number;
+  currentStep?: number;
+  progress?: number;
 }
 
-const STEP_LABELS_KEYS = ['1', '2', '3', '4', '5'] as const;
+const steps = [1, 2, 3, 4];
 
-const Stepper: React.FC<StepperProps> = ({ currentStep, totalSteps }) => {
-  const { t } = useTranslation();
-
+const Stepper: React.FC<StepperProps> = ({
+  currentStep = 1,
+  progress = 50,
+}) => {
   return (
-    <div className="stepper" role="list" aria-label="Form progress">
-      {Array.from({ length: totalSteps }, (_, i) => {
-        const step = i + 1;
-        const isCompleted = step < currentStep;
+    <div className="stepper">
+      {steps.map((step, index) => {
+        const isDone = step < currentStep;
         const isActive = step === currentStep;
+        const isLast = index === steps.length - 1;
 
         return (
-          <div
-            key={step}
-            role="listitem"
-            className={`stepper__item${isActive ? ' stepper__item--active' : ''}${isCompleted ? ' stepper__item--completed' : ''}`}
-            aria-current={isActive ? 'step' : undefined}
-          >
-            <div className="stepper__circle">
-              {isCompleted ? '✓' : step}
+          <React.Fragment key={step}>
+            <div
+              className={[
+                "stepper__item",
+                isDone ? "stepper__item--done" : "",
+                isActive ? "stepper__item--active" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              <div className="stepper__circle">{step}</div>
             </div>
-            <span className="stepper__label">
-              {t(`steps.${STEP_LABELS_KEYS[i]}`)}
-            </span>
-          </div>
+
+            {!isLast && (
+              <div className="stepper__line">
+                <div
+                  className={[
+                    "stepper__line-fill",
+                    step < currentStep ? "stepper__line-fill--done" : "",
+                    step === currentStep ? "stepper__line-fill--active" : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                  style={{
+                    width:
+                      step < currentStep
+                        ? "100%"
+                        : step === currentStep
+                          ? `${progress}%`
+                          : "0%",
+                  }}
+                />
+              </div>
+            )}
+          </React.Fragment>
         );
       })}
     </div>

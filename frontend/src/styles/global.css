@@ -176,22 +176,6 @@ body {
   min-width: 0;
 }
 
-.stepper__item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 18px;
-  left: calc(50% + 18px);
-  right: calc(-50% + 18px);
-  height: 2px;
-  background: var(--gray-200);
-  transition: background var(--transition);
-  z-index: 0;
-}
-
-.stepper__item--completed:not(:last-child)::after {
-  background: var(--primary);
-}
-
 .stepper__circle {
   width: 36px;
   height: 36px;
@@ -253,7 +237,7 @@ body {
 
 .form-card__header {
   margin-bottom: 2rem;
-  text-align: center;
+  text-align: left;
 }
 
 .form-card__step-badge {

@@ -11,8 +11,6 @@ import { useTracking } from "../hooks/useTracking";
 import { api } from "../services/api";
 import { AllFormData } from "../types/form";
 
-const TOTAL_STEPS = 5;
-
 const defaultFormData: AllFormData = {
   name: "",
   email: "",
@@ -50,13 +48,6 @@ const HomePage: React.FC = () => {
       track("step_view", { step: currentStep });
     }
   }, [currentStep, track]);
-
-  const handleHeroCtaClick = () => {
-    track("cta_click", { button: "hero_get_started" });
-    document
-      .getElementById("quote-form")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
 
   const goToNextStep = (stepData: Partial<AllFormData>) => {
     const updated = { ...formData, ...stepData };
@@ -118,7 +109,7 @@ const HomePage: React.FC = () => {
       {/* Form */}
       <section className="form-section" id="quote-form">
         <div className="form-wrapper">
-          <Stepper currentStep={currentStep} totalSteps={TOTAL_STEPS} />
+          <Stepper currentStep={currentStep} />
 
           <div className="form-card">
             {currentStep === 1 && (
@@ -176,6 +167,59 @@ const HomePage: React.FC = () => {
               />
             )}
           </div>
+
+          {currentStep < 5 && (
+            <div className="form-nav">
+              {currentStep > 1 ? (
+                <button
+                  type="button"
+                  className="btn btn--secondary"
+                  onClick={goToPrevStep}
+                  disabled={isSubmitting}
+                >
+                  ← {t("buttons.back")}
+                </button>
+              ) : (
+                <div />
+              )}
+
+              {currentStep < 4 ? (
+                <button
+                  type="submit"
+                  form={`step${currentStep}-form`}
+                  className="btn btn--primary"
+                >
+                  {t("buttons.next")} →
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  form="step4-form"
+                  className="btn btn--primary btn--lg"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span
+                        style={{
+                          display: "inline-block",
+                          width: 16,
+                          height: 16,
+                          border: "2px solid rgba(255,255,255,0.3)",
+                          borderTopColor: "#fff",
+                          borderRadius: "50%",
+                          animation: "spin 0.7s linear infinite",
+                        }}
+                      />
+                      Submitting...
+                    </>
+                  ) : (
+                    t("step4.submit")
+                  )}
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </section>
     </div>

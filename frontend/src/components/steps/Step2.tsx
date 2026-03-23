@@ -43,7 +43,7 @@ const Step2: React.FC<Props> = ({ defaultValues, onNext, onBack }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form id="step2-form" onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className="form-card__header">
         <div className="form-card__step-badge">
           {t("steps.step")} 2 {t("steps.of")} 5
@@ -110,15 +110,6 @@ const Step2: React.FC<Props> = ({ defaultValues, onNext, onBack }) => {
           )}
         </div>
       )}
-
-      <div className="form-nav">
-        <button type="button" className="btn btn--secondary" onClick={onBack}>
-          ← {t("buttons.back")}
-        </button>
-        <button type="submit" className="btn btn--primary">
-          {t("buttons.next")} →
-        </button>
-      </div>
     </form>
   );
 };
