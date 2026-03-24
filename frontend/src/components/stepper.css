@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  width: 100%;
 }
 
 .stepper__item {
@@ -38,7 +39,7 @@
 
 .stepper__line {
   position: relative;
-  width: 120px;
+  flex: 1;
   height: 8px;
   border-radius: 999px;
   background: #d9dde3;
@@ -55,4 +56,26 @@
 .stepper__line-fill--done,
 .stepper__line-fill--active {
   background: #4f46e5;
+}
+
+.stepper-divider {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 1.25rem 0;
+}
+
+@media (max-width: 480px) {
+  .stepper {
+    gap: 6px;
+  }
+
+  .stepper__circle {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .stepper__line {
+    height: 6px;
+  }
 }

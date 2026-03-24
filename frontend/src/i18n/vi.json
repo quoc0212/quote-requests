@@ -140,5 +140,9 @@
     "close": "Đóng",
     "detailTitle": "Chi tiết báo giá"
   },
-  "language": "Ngôn ngữ"
+  "language": "Ngôn ngữ",
+  "footer": {
+    "subscribe": "Đăng ký",
+    "emailPlaceholder": "Nhập email của bạn"
+  }
 }

@@ -30,13 +30,6 @@ const Navbar: React.FC = () => {
             <span className="lang-toggle__flag">{isVi ? "🇺🇸" : "🇻🇳"}</span>
             <span>{isVi ? "EN" : "VI"}</span>
           </button>
-          <Link
-            to="/admin"
-            className="btn btn--outline"
-            style={{ padding: "0.5rem 1rem", fontSize: "0.875rem" }}
-          >
-            {t("nav.admin")}
-          </Link>
         </div>
       </div>
     </nav>

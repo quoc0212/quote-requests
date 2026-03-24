@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import Navbar from "../components/Navbar";
-import Step1 from "../components/steps/Step1";
-import Step2 from "../components/steps/Step2";
-import Step3 from "../components/steps/Step3";
-import Step4 from "../components/steps/Step4";
-import Step5 from "../components/steps/Step5";
-import { useTracking } from "../hooks/useTracking";
-import { api } from "../services/api";
-import { AllFormData } from "../types/form";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import Step1 from "../../components/steps/Step1";
+import Step2 from "../../components/steps/Step2";
+import Step3 from "../../components/steps/Step3";
+import Step4 from "../../components/steps/Step4";
+import { useTracking } from "../../hooks/useTracking";
+import { api } from "../../services/api";
+import { AllFormData } from "../../types/form";
 
 const defaultFormData: AllFormData = {
   name: "",
@@ -87,7 +87,6 @@ const HomePage: React.FC = () => {
       setQuoteId(res.id);
       setEmailStatus(res.email_status as "pending");
       setFormData(finalData);
-      setCurrentStep(5);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err: unknown) {
       const msg =
@@ -157,11 +156,6 @@ const HomePage: React.FC = () => {
                 isSubmitting={isSubmitting}
                 submitError={submitError}
                 currentStep={currentStep}
-              />
-            )}
-
-            {currentStep === 5 && quoteId && (
-              <Step5
                 quoteId={quoteId}
                 emailStatus={emailStatus}
                 onStatusChange={setEmailStatus}
@@ -169,16 +163,16 @@ const HomePage: React.FC = () => {
             )}
           </div>
 
-          {currentStep < 5 && (
+          {(currentStep < 4 || (currentStep === 4 && quoteId === null)) && (
             <div className="form-nav">
-              {currentStep > 1 ? (
+              {currentStep > 1 && quoteId === null ? (
                 <button
                   type="button"
                   className="btn btn--secondary"
                   onClick={goToPrevStep}
                   disabled={isSubmitting}
                 >
-                  ← {t("buttons.prevStep")}
+                  {t("buttons.prevStep")}
                 </button>
               ) : (
                 <div />
@@ -190,13 +184,14 @@ const HomePage: React.FC = () => {
                   form={`step${currentStep}-form`}
                   className="btn btn--primary"
                 >
-                  {t("buttons.nextStep")} →
+                  {t("buttons.nextStep")}
                 </button>
               ) : null}
             </div>
           )}
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

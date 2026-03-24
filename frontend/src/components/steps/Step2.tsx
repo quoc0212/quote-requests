@@ -39,6 +39,7 @@ const Step2: React.FC<Props> = ({
   return (
     <form id="step2-form" onSubmit={handleSubmit(onNext)} noValidate>
       <Stepper currentStep={currentStep} />
+      <hr className="stepper-divider" />
       <div className="form-card__header">
         <h2 className="form-card__title">{t("step2.title")}</h2>
         <p className="form-card__subtitle">{t("step2.subtitle")}</p>

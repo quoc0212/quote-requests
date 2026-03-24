@@ -371,7 +371,7 @@ body {
    ============================================= */
 .services-grid {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.875rem;
   margin-bottom: 1rem;
 }
@@ -1362,6 +1362,10 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .budget-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .admin-layout {
     flex-direction: column;
   }
@@ -1428,7 +1432,28 @@ body {
   }
 
   .services-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .service-card__label {
+    padding: 0.75rem 1rem;
+  }
+
+  .service-card__icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .budget-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-card__label {
+    padding: 0.75rem 1rem;
+  }
+
+  .budget-card__name {
+    font-size: 0.875rem;
   }
 
   .stats-grid {
@@ -1442,4 +1467,80 @@ body {
   .btn {
     width: 100%;
   }
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  background: var(--white);
+  border-top: 1px solid var(--gray-200);
+  padding: 2rem 1.5rem;
+  margin-top: auto;
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer__logo img {
+  height: 32px;
+  object-fit: contain;
+}
+
+.footer__copyright {
+  font-size: 0.8125rem;
+  color: var(--gray-500);
+  margin: 0;
+}
+
+.footer__subscribe {
+  display: flex;
+  align-items: center;
+}
+
+.footer__input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+
+.footer__input-wrapper:focus-within {
+  border-color: rgba(74, 58, 255, 1);
+}
+
+.footer__email-input {
+  padding: 0.5rem 0.875rem;
+  border: none;
+  font-size: 0.875rem;
+  outline: none;
+  width: 220px;
+  background: transparent;
+}
+
+.footer__email-input:focus {
+  border-color: unset;
+}
+
+.footer__subscribe-btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  border-radius: 0;
+  margin: 0;
 }

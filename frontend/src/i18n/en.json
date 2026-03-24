@@ -140,5 +140,9 @@
     "close": "Close",
     "detailTitle": "Quote Details"
   },
-  "language": "Language"
+  "language": "Language",
+  "footer": {
+    "subscribe": "Subscribe",
+    "emailPlaceholder": "Enter your email"
+  }
 }
