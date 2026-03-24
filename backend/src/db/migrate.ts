@@ -72,11 +72,11 @@ async function migrate(): Promise<void> {
     `, [adminEmail, hash]);
 
     await client.query('COMMIT');
-    console.log('✅ Migration completed successfully');
-    console.log(`✅ Admin seeded: ${adminEmail}`);
+    console.log('Migration completed successfully');
+    console.log(`Admin seeded: ${adminEmail}`);
   } catch (err) {
     await client.query('ROLLBACK');
-    console.error('❌ Migration failed:', err);
+    console.error('Migration failed:', err);
     throw err;
   } finally {
     client.release();
