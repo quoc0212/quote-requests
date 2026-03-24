@@ -1,10 +1,10 @@
-import React from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import AdminLogin from './AdminLogin';
-import AdminDashboard from './AdminDashboard';
+import React from "react";
+import AdminLogin from "./login/AdminLogin";
+import AdminDashboard from "./dashboard/AdminDashboard";
+import { useAdminPage } from "./useAdminPage";
 
 const AdminPage: React.FC = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAdminPage();
   return isAuthenticated ? <AdminDashboard /> : <AdminLogin />;
 };
 

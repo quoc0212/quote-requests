@@ -1,9 +1,8 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import { Step3Data, BUDGET_OPTIONS } from "../../types/form";
 import Stepper from "../Stepper";
 import { PRIMARY_COLOR_1 } from "../../constants";
+import { useStepForm } from "./useStepForm";
 
 interface Props {
   defaultValues: Step3Data;
@@ -18,18 +17,14 @@ const Step3: React.FC<Props> = ({
   onBack,
   currentStep,
 }) => {
-  const { t } = useTranslation();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Step3Data>({ defaultValues });
-
-  const selectedBudget = watch("budget");
+  const { t, register, onSubmit, errors, selectedBudget } = useStepForm({
+    step: 3,
+    defaultValues,
+    onSubmit: onNext,
+  });
 
   return (
-    <form id="step3-form" onSubmit={handleSubmit(onNext)} noValidate>
+    <form id="step3-form" onSubmit={onSubmit} noValidate>
       <Stepper currentStep={currentStep} />
       <hr className="stepper-divider" />
       <div className="form-card__header">

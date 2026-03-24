@@ -1,16 +1,8 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import { Step2Data } from "../../types/form";
 import Stepper from "../Stepper";
 import { PRIMARY_COLOR_1 } from "../../constants";
-
-const SERVICE_OPTIONS = [
-  { value: "Development", icon: "/icons/development_icon.svg" },
-  { value: "Web Design", icon: "/icons/web_design_icon.svg" },
-  { value: "Marketing", icon: "/icons/marketing_icon.svg" },
-  { value: "Other", icon: "/icons/other_icon.svg" },
-] as const;
+import { useStepForm, SERVICE_OPTIONS } from "./useStepForm";
 
 interface Props {
   defaultValues: Step2Data;
@@ -25,19 +17,11 @@ const Step2: React.FC<Props> = ({
   onBack,
   currentStep,
 }) => {
-  const { t } = useTranslation();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Step2Data>({ defaultValues, mode: "onChange" });
-
-  const selectedService = watch("service");
-  const showOther = selectedService === "Other";
+  const { t, register, onSubmit, errors, selectedService, showOther } =
+    useStepForm({ step: 2, defaultValues, onSubmit: onNext });
 
   return (
-    <form id="step2-form" onSubmit={handleSubmit(onNext)} noValidate>
+    <form id="step2-form" onSubmit={onSubmit} noValidate>
       <Stepper currentStep={currentStep} />
       <hr className="stepper-divider" />
       <div className="form-card__header">

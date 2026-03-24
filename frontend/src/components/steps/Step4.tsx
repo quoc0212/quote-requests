@@ -1,10 +1,7 @@
-import React, { useEffect, useCallback, useRef } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { Step4Data } from "../../types/form";
 import Stepper from "../Stepper";
-import { api } from "../../services/api";
+import { useStepForm } from "./useStepForm";
 
 interface Props {
   defaultValues: Step4Data;
@@ -18,9 +15,6 @@ interface Props {
   onStatusChange: (status: "pending" | "sending" | "sent" | "failed") => void;
 }
 
-const POLL_INTERVAL = 3000;
-const MAX_POLLS = 20;
-
 const Step4: React.FC<Props> = ({
   defaultValues,
   onSubmit,
@@ -31,64 +25,32 @@ const Step4: React.FC<Props> = ({
   emailStatus,
   onStatusChange,
 }) => {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { handleSubmit } = useForm<Step4Data>({ defaultValues });
-  const pollCount = useRef(0);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const poll = useCallback(async () => {
-    if (!quoteId || pollCount.current >= MAX_POLLS) {
-      onStatusChange("failed");
-      return;
-    }
-    pollCount.current++;
-    try {
-      const res = await api.getEmailStatus(quoteId);
-      onStatusChange(res.email_status);
-      if (res.email_status === "sent" || res.email_status === "failed") return;
-      timerRef.current = setTimeout(poll, POLL_INTERVAL);
-    } catch {
-      timerRef.current = setTimeout(poll, POLL_INTERVAL);
-    }
-  }, [quoteId, onStatusChange]);
-
-  useEffect(() => {
-    if (quoteId && emailStatus !== "sent" && emailStatus !== "failed") {
-      timerRef.current = setTimeout(poll, POLL_INTERVAL);
-    }
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, [poll, quoteId, emailStatus]);
-
-  const handleRetry = async () => {
-    if (!quoteId) return;
-    pollCount.current = 0;
-    onStatusChange("pending");
-    try {
-      await api.retryEmail(quoteId);
-      timerRef.current = setTimeout(poll, POLL_INTERVAL);
-    } catch {
-      onStatusChange("failed");
-    }
-  };
-
-  const handleViewReport = () => {
-    navigate(`/report/${quoteId}`);
-  };
+  const {
+    t,
+    onSubmit: formSubmit,
+    handleRetry,
+    handleViewReport,
+    isPending,
+    isSent,
+    isFailed,
+  } = useStepForm({
+    step: 4,
+    defaultValues,
+    onSubmit,
+    quoteId,
+    emailStatus,
+    onStatusChange,
+  });
 
   // Post-submit: show email status UI
   if (quoteId) {
-    const isPending = emailStatus === "pending" || emailStatus === "sending";
-    const isSent = emailStatus === "sent";
-    const isFailed = emailStatus === "failed";
-
     return (
       <div>
-        <div className="form-card__header">
-          <h2 className="form-card__title">{t("step5.title")}</h2>
-        </div>
+        {!isSent && (
+          <div className="form-card__header" style={{ textAlign: "center" }}>
+            <h2 className="form-card__title">{t("step5.title")}</h2>
+          </div>
+        )}
         <div className="confirmation">
           {isPending && (
             <>
@@ -154,9 +116,8 @@ const Step4: React.FC<Props> = ({
     );
   }
 
-  // Pre-submit: show the submit form
   return (
-    <form id="step4-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form id="step4-form" onSubmit={formSubmit} noValidate>
       <Stepper currentStep={currentStep} />
       <hr className="stepper-divider" />
 

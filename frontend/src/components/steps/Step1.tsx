@@ -1,8 +1,7 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import { Step1Data } from "../../types/form";
 import Stepper from "../Stepper";
+import { useStepForm } from "./useStepForm";
 
 interface Props {
   defaultValues: Step1Data;
@@ -11,15 +10,14 @@ interface Props {
 }
 
 const Step1: React.FC<Props> = ({ defaultValues, onNext, currentStep }) => {
-  const { t } = useTranslation();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Step1Data>({ defaultValues, mode: "onBlur" });
+  const { t, register, onSubmit, errors } = useStepForm({
+    step: 1,
+    defaultValues,
+    onSubmit: onNext,
+  });
 
   return (
-    <form id="step1-form" onSubmit={handleSubmit(onNext)} noValidate>
+    <form id="step1-form" onSubmit={onSubmit} noValidate>
       <Stepper currentStep={currentStep} />
       <hr className="stepper-divider" />
       <div className="form-card__header">
