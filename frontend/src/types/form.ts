@@ -6,7 +6,7 @@ export interface Step1Data {
 }
 
 export interface Step2Data {
-  services: string[];
+  service: string;
   other_service: string;
 }
 
@@ -43,10 +43,8 @@ export const TIMELINE_OPTIONS = [
 ] as const;
 
 export const BUDGET_OPTIONS = [
-  '',
-  'Under $5,000',
-  '$5,000 - $15,000',
-  '$15,000 - $50,000',
-  '$50,000 - $100,000',
-  'Over $100,000',
+  '$5,000 - $10,000',
+  '$10,000 - $20,000',
+  '$20,000 - $50,000',
+  '$50,000+',
 ] as const;

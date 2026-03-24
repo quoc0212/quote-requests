@@ -1,96 +1,91 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Step2Data, SERVICES } from "../../types/form";
+import { Step2Data } from "../../types/form";
+import Stepper from "../Stepper";
+import { PRIMARY_COLOR_1 } from "../../constants";
 
-const SERVICE_ICONS: Record<string, string> = {
-  Development: "💻",
-  "Web Design": "🎨",
-  Marketing: "📢",
-  SEO: "🔍",
-  Consulting: "💼",
-  Other: "✨",
-};
+const SERVICE_OPTIONS = [
+  { value: "Development", icon: "/icons/development_icon.svg" },
+  { value: "Web Design", icon: "/icons/web_design_icon.svg" },
+  { value: "Marketing", icon: "/icons/marketing_icon.svg" },
+  { value: "Other", icon: "/icons/other_icon.svg" },
+] as const;
 
 interface Props {
   defaultValues: Step2Data;
   onNext: (data: Step2Data) => void;
   onBack: () => void;
+  currentStep: number;
 }
 
-const Step2: React.FC<Props> = ({ defaultValues, onNext, onBack }) => {
+const Step2: React.FC<Props> = ({
+  defaultValues,
+  onNext,
+  onBack,
+  currentStep,
+}) => {
   const { t } = useTranslation();
   const {
     register,
     handleSubmit,
     watch,
-
     formState: { errors },
-    setError,
-    clearErrors,
   } = useForm<Step2Data>({ defaultValues, mode: "onChange" });
 
-  const selectedServices = watch("services") || [];
-  const showOther = selectedServices.includes("Other");
-
-  const onSubmit = (data: Step2Data) => {
-    if (!data.services || data.services.length === 0) {
-      setError("services", { message: t("step2.atLeastOne") });
-      return;
-    }
-    clearErrors("services");
-    onNext(data);
-  };
+  const selectedService = watch("service");
+  const showOther = selectedService === "Other";
 
   return (
-    <form id="step2-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form id="step2-form" onSubmit={handleSubmit(onNext)} noValidate>
+      <Stepper currentStep={currentStep} />
       <div className="form-card__header">
-        <div className="form-card__step-badge">
-          {t("steps.step")} 2 {t("steps.of")} 5
-        </div>
         <h2 className="form-card__title">{t("step2.title")}</h2>
         <p className="form-card__subtitle">{t("step2.subtitle")}</p>
       </div>
 
-      <div
-        className="services-grid"
-        role="group"
-        aria-labelledby="services-label"
-      >
-        {SERVICES.map((service) => (
-          <div className="service-card" key={service}>
-            <input
-              type="checkbox"
-              id={`service-${service}`}
-              value={service}
-              className="service-card__input"
-              {...register("services", {
-                validate: (v) => (v && v.length > 0) || t("step2.atLeastOne"),
-              })}
-            />
-            <label
-              htmlFor={`service-${service}`}
-              className="service-card__label"
-            >
-              <span className="service-card__icon">
-                {SERVICE_ICONS[service]}
-              </span>
-              <span className="service-card__name">
-                {t(`step2.services.${service}`)}
-              </span>
-              <span className="service-card__check">
-                {selectedServices.includes(service) ? "✓" : ""}
-              </span>
-            </label>
-          </div>
-        ))}
+      <div className="services-grid" role="radiogroup">
+        {SERVICE_OPTIONS.map(({ value, icon }) => {
+          const isSelected = selectedService === value;
+          return (
+            <div className="service-card" key={value}>
+              <input
+                type="radio"
+                id={`service-${value}`}
+                value={value}
+                className="service-card__input"
+                {...register("service", { required: t("validation.required") })}
+              />
+              <label
+                htmlFor={`service-${value}`}
+                className="service-card__label"
+                style={
+                  isSelected
+                    ? {
+                        borderColor: PRIMARY_COLOR_1,
+                        backgroundColor: "rgba(74, 58, 255, 0.08)",
+                        boxShadow: "0 0 0 3px rgba(74, 58, 255, 0.15)",
+                      }
+                    : undefined
+                }
+              >
+                <img src={icon} alt={value} className="service-card__icon" />
+                <span
+                  className="service-card__name"
+                  style={isSelected ? { color: PRIMARY_COLOR_1 } : undefined}
+                >
+                  {t(`step2.services.${value}`) || value}
+                </span>
+              </label>
+            </div>
+          );
+        })}
       </div>
 
-      {errors.services && (
-        <div className="form-error mb-2">{errors.services.message}</div>
+      {errors.service && (
+        <div className="form-error mb-2">{errors.service.message}</div>
       )}
 
-      {/* Other service text field - appears dynamically */}
       {showOther && (
         <div className="form-group other-service-input">
           <label className="form-label" htmlFor="other_service">

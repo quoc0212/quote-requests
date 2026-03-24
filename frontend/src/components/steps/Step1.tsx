@@ -2,13 +2,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Step1Data } from "../../types/form";
+import Stepper from "../Stepper";
 
 interface Props {
   defaultValues: Step1Data;
   onNext: (data: Step1Data) => void;
+  currentStep: number;
 }
 
-const Step1: React.FC<Props> = ({ defaultValues, onNext }) => {
+const Step1: React.FC<Props> = ({ defaultValues, onNext, currentStep }) => {
   const { t } = useTranslation();
   const {
     register,
@@ -18,6 +20,7 @@ const Step1: React.FC<Props> = ({ defaultValues, onNext }) => {
 
   return (
     <form id="step1-form" onSubmit={handleSubmit(onNext)} noValidate>
+      <Stepper currentStep={currentStep} />
       <div className="form-card__header">
         <h2 className="form-card__title">{t("step1.title")}</h2>
         <p className="form-card__subtitle">{t("step1.subtitle")}</p>

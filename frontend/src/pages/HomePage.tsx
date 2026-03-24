@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Navbar from "../components/Navbar";
-import Stepper from "../components/Stepper";
 import Step1 from "../components/steps/Step1";
 import Step2 from "../components/steps/Step2";
 import Step3 from "../components/steps/Step3";
@@ -16,7 +15,7 @@ const defaultFormData: AllFormData = {
   email: "",
   phone: "",
   company_name: "",
-  services: [],
+  service: "",
   other_service: "",
   timeline: "",
   budget: "",
@@ -72,13 +71,13 @@ const HomePage: React.FC = () => {
     setSubmitError(null);
 
     try {
-      track("form_submit", { services: finalData.services });
+      track("form_submit", { service: finalData.service });
       const res = await api.submitQuote({
         name: finalData.name,
         email: finalData.email,
         phone: finalData.phone || undefined,
         company_name: finalData.company_name || undefined,
-        services: finalData.services,
+        services: finalData.service ? [finalData.service] : [],
         other_service: finalData.other_service || undefined,
         timeline: finalData.timeline || undefined,
         budget: finalData.budget || undefined,
@@ -109,8 +108,6 @@ const HomePage: React.FC = () => {
       {/* Form */}
       <section className="form-section" id="quote-form">
         <div className="form-wrapper">
-          <Stepper currentStep={currentStep} />
-
           <div className="form-card">
             {currentStep === 1 && (
               <Step1
@@ -121,17 +118,19 @@ const HomePage: React.FC = () => {
                   company_name: formData.company_name,
                 }}
                 onNext={(data) => goToNextStep(data)}
+                currentStep={currentStep}
               />
             )}
 
             {currentStep === 2 && (
               <Step2
                 defaultValues={{
-                  services: formData.services,
+                  service: formData.service,
                   other_service: formData.other_service,
                 }}
                 onNext={(data) => goToNextStep(data)}
                 onBack={goToPrevStep}
+                currentStep={currentStep}
               />
             )}
 
@@ -143,6 +142,7 @@ const HomePage: React.FC = () => {
                 }}
                 onNext={(data) => goToNextStep(data)}
                 onBack={goToPrevStep}
+                currentStep={currentStep}
               />
             )}
 
@@ -156,6 +156,7 @@ const HomePage: React.FC = () => {
                 onBack={goToPrevStep}
                 isSubmitting={isSubmitting}
                 submitError={submitError}
+                currentStep={currentStep}
               />
             )}
 
@@ -177,7 +178,7 @@ const HomePage: React.FC = () => {
                   onClick={goToPrevStep}
                   disabled={isSubmitting}
                 >
-                  ← {t("buttons.back")}
+                  ← {t("buttons.prevStep")}
                 </button>
               ) : (
                 <div />
@@ -189,35 +190,9 @@ const HomePage: React.FC = () => {
                   form={`step${currentStep}-form`}
                   className="btn btn--primary"
                 >
-                  {t("buttons.next")} →
+                  {t("buttons.nextStep")} →
                 </button>
-              ) : (
-                <button
-                  type="submit"
-                  form="step4-form"
-                  className="btn btn--primary btn--lg"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <span
-                        style={{
-                          display: "inline-block",
-                          width: 16,
-                          height: 16,
-                          border: "2px solid rgba(255,255,255,0.3)",
-                          borderTopColor: "#fff",
-                          borderRadius: "50%",
-                          animation: "spin 0.7s linear infinite",
-                        }}
-                      />
-                      Submitting...
-                    </>
-                  ) : (
-                    t("step4.submit")
-                  )}
-                </button>
-              )}
+              ) : null}
             </div>
           )}
         </div>

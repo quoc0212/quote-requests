@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Step4Data } from "../../types/form";
+import Stepper from "../Stepper";
 
 interface Props {
   defaultValues: Step4Data;
@@ -9,79 +10,65 @@ interface Props {
   onBack: () => void;
   isSubmitting: boolean;
   submitError: string | null;
+  currentStep: number;
 }
 
 const Step4: React.FC<Props> = ({
   defaultValues,
   onSubmit,
-  onBack,
   isSubmitting,
   submitError,
+  currentStep,
 }) => {
   const { t } = useTranslation();
   const {
-    register,
     handleSubmit,
     formState: { errors },
   } = useForm<Step4Data>({ defaultValues });
 
   return (
     <form id="step4-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div className="form-card__header">
-        <div className="form-card__step-badge">
-          {t("steps.step")} 4 {t("steps.of")} 5
-        </div>
-        <h2 className="form-card__title">{t("step4.title")}</h2>
-        <p className="form-card__subtitle">{t("step4.subtitle")}</p>
-      </div>
+      <Stepper currentStep={currentStep} />
 
-      <div className="form-grid form-grid--full">
-        {/* Project Description */}
-        <div className="form-group">
-          <label className="form-label" htmlFor="project_description">
-            {t("step4.description")}{" "}
-            <span className="form-label__required">*</span>
-          </label>
-          <textarea
-            id="project_description"
-            placeholder={t("step4.descriptionPlaceholder")}
-            className={`form-textarea${errors.project_description ? " error" : ""}`}
-            rows={5}
-            {...register("project_description", {
-              required: t("validation.required"),
-              minLength: {
-                value: 20,
-                message: t("validation.minLength", { min: 20 }),
-              },
-            })}
-          />
-          {errors.project_description && (
-            <span className="form-error">
-              {errors.project_description.message}
-            </span>
+      <div className="step4-submit-section">
+        <img
+          src="/icons/submit_request.svg"
+          alt="Submit request"
+          className="step4-submit-icon"
+        />
+        <h2 className="step4-submit-title">{t("step4.submitTitle")}</h2>
+        <p className="step4-submit-desc">{t("step4.submitDesc")}</p>
+        {submitError && (
+          <div className="error-alert" role="alert">
+            {submitError}
+          </div>
+        )}
+        <button
+          type="submit"
+          className="btn btn--primary btn--lg"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? (
+            <>
+              <span
+                style={{
+                  display: "inline-block",
+                  width: 16,
+                  height: 16,
+                  border: "2px solid rgba(255,255,255,0.3)",
+                  borderTopColor: "#fff",
+                  borderRadius: "50%",
+                  animation: "spin 0.7s linear infinite",
+                  marginRight: 8,
+                }}
+              />
+              Submitting...
+            </>
+          ) : (
+            t("step4.submit")
           )}
-        </div>
-
-        {/* Additional Notes */}
-        <div className="form-group">
-          <label className="form-label" htmlFor="additional_notes">
-            {t("step4.notes")}
-          </label>
-          <textarea
-            id="additional_notes"
-            placeholder={t("step4.notesPlaceholder")}
-            className="form-textarea"
-            rows={3}
-            {...register("additional_notes")}
-          />
-        </div>
+        </button>
       </div>
-
-      {submitError && (
-        <div className="error-alert" role="alert">
-          {submitError}
-        </div>
-      )}
     </form>
   );
 };
