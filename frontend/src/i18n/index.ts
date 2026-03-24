@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './en.json';
 import vi from './vi.json';
+import fr from './fr.json';
 
 i18n
   .use(LanguageDetector)
@@ -11,6 +12,7 @@ i18n
     resources: {
       en: { translation: en },
       vi: { translation: vi },
+      fr: { translation: fr },
     },
     fallbackLng: 'en',
     interpolation: { escapeValue: false },

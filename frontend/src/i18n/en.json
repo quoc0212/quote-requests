@@ -138,7 +138,13 @@
     "actions": "Actions",
     "view": "View",
     "close": "Close",
-    "detailTitle": "Quote Details"
+    "detailTitle": "Quote Details",
+    "servicesBreakdown": "Services Breakdown",
+    "last30Days": "Last 30 Days Activity",
+    "noStats": "No statistics available.",
+    "showing": "Showing {{from}}–{{to}} of {{total}}",
+    "signingIn": "Signing in...",
+    "loginFailed": "Login failed"
   },
   "language": "Language",
   "footer": {

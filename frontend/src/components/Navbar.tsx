@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+const LANGUAGES = [
+  { code: "en", label: "English", flag: "🇺🇸" },
+  { code: "vi", label: "Tiếng Việt", flag: "🇻🇳" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+];
+
 const Navbar: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const toggleLanguage = () => {
-    const next = i18n.language.startsWith("vi") ? "en" : "vi";
-    i18n.changeLanguage(next);
-  };
+  const currentIndex = LANGUAGES.findIndex((l) =>
+    i18n.language.startsWith(l.code),
+  );
+  const current = LANGUAGES[currentIndex] ?? LANGUAGES[0];
 
-  const isVi = i18n.language.startsWith("vi");
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <nav className="navbar">
@@ -22,14 +38,41 @@ const Navbar: React.FC = () => {
           />
         </Link>
         <div className="navbar__actions">
-          <button
-            className="lang-toggle"
-            onClick={toggleLanguage}
-            aria-label="Toggle language"
-          >
-            <span className="lang-toggle__flag">{isVi ? "🇺🇸" : "🇻🇳"}</span>
-            <span>{isVi ? "EN" : "VI"}</span>
-          </button>
+          <div className="lang-dropdown" ref={ref}>
+            <button
+              className="lang-toggle"
+              onClick={() => setOpen((o) => !o)}
+              aria-haspopup="listbox"
+              aria-expanded={open}
+            >
+              <span className="lang-toggle__flag">{current.flag}</span>
+              <span>{current.label}</span>
+              <span
+                className={`lang-toggle__chevron${open ? " lang-toggle__chevron--open" : ""}`}
+              >
+                ▾
+              </span>
+            </button>
+            {open && (
+              <ul className="lang-dropdown__menu" role="listbox">
+                {LANGUAGES.map((lang) => (
+                  <li
+                    key={lang.code}
+                    role="option"
+                    aria-selected={lang.code === current.code}
+                    className={`lang-dropdown__item${lang.code === current.code ? " lang-dropdown__item--active" : ""}`}
+                    onClick={() => {
+                      i18n.changeLanguage(lang.code);
+                      setOpen(false);
+                    }}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.label}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </nav>

@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "admin": "Admin"
+  },
+  "hero": {
+    "badge": "Devis gratuit",
+    "title": "Construisons quelque chose",
+    "titleHighlight": "d'Incroyable Ensemble",
+    "subtitle": "Parlez-nous de votre projet et obtenez un devis personnalisé en 24 heures.",
+    "cta": "Commencer"
+  },
+  "steps": {
+    "step": "Étape",
+    "of": "sur",
+    "1": "Contact",
+    "2": "Services",
+    "3": "Budget",
+    "4": "Détails",
+    "5": "Confirmation"
+  },
+  "step1": {
+    "title": "Coordonnées",
+    "subtitle": "Lorem ipsum dolor sit amet consectetur adipisc.",
+    "name": "Nom",
+    "namePlaceholder": "Jean Dupont",
+    "email": "E-mail",
+    "emailPlaceholder": "Adresse e-mail",
+    "phone": "Téléphone",
+    "phonePlaceholder": "+33 1 23 45 67 89",
+    "company": "Société",
+    "companyPlaceholder": "Nom de la société"
+  },
+  "step2": {
+    "title": "Nos services",
+    "subtitle": "Veuillez sélectionner le service qui vous intéresse.",
+    "atLeastOne": "Veuillez sélectionner au moins un service",
+    "other": "Autre",
+    "otherPlaceholder": "Décrivez votre besoin de service personnalisé...",
+    "services": {
+      "Development": "Développement",
+      "Web Design": "Web Design",
+      "Marketing": "Marketing",
+      "SEO": "SEO",
+      "Consulting": "Conseil",
+      "Other": "Autre"
+    }
+  },
+  "step3": {
+    "title": "Quel est votre budget ?",
+    "subtitle": "Veuillez sélectionner la fourchette budgétaire envisagée.",
+    "budget": "Budget estimé",
+    "budgetOptions": {
+      "$5,000 - $10,000": "$5 000 - $10 000",
+      "$10,000 - $20,000": "$10 000 - $20 000",
+      "$20,000 - $50,000": "$20 000 - $50 000",
+      "$50,000+": "$50 000+"
+    }
+  },
+  "step4": {
+    "title": "Détails du projet",
+    "subtitle": "Dites-nous en plus sur votre projet pour un devis plus précis.",
+    "submitTitle": "Soumettre votre demande de devis",
+    "submitDesc": "Veuillez vérifier toutes les informations saisies aux étapes précédentes, et si tout est correct, envoyez votre message pour recevoir un devis dans les 24 à 48 heures.",
+    "description": "Description du projet",
+    "descriptionPlaceholder": "Décrivez les objectifs, fonctionnalités et exigences de votre projet...",
+    "notes": "Notes supplémentaires",
+    "notesPlaceholder": "Avez-vous d'autres informations à partager ? (optionnel)",
+    "submit": "Envoyer la demande"
+  },
+  "step5": {
+    "title": "Nous traitons votre demande",
+    "sending": "Envoi de l'e-mail de confirmation...",
+    "sent": "E-mail envoyé avec succès !",
+    "failed": "Échec de l'envoi de l'e-mail",
+    "sentMessage": "Un e-mail de confirmation a été envoyé dans votre boîte de réception.",
+    "failedMessage": "Nous n'avons pas pu envoyer l'e-mail de confirmation. Veuillez réessayer.",
+    "retry": "Réessayer",
+    "viewReport": "Voir votre rapport",
+    "checkingStatus": "Vérification du statut de l'e-mail..."
+  },
+  "report": {
+    "title": "Rapport de soumission",
+    "back": "Retour à l'accueil",
+    "contactInfo": "Informations de contact",
+    "name": "Nom",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "company": "Société",
+    "projectDetails": "Détails du projet",
+    "services": "Services",
+    "timeline": "Délai",
+    "budget": "Budget",
+    "description": "Description",
+    "notes": "Notes supplémentaires",
+    "submittedAt": "Soumis le",
+    "emailStatus": "Statut e-mail",
+    "notProvided": "Non renseigné"
+  },
+  "buttons": {
+    "next": "Suivant",
+    "back": "Retour",
+    "submit": "Envoyer",
+    "prevStep": "Étape précédente",
+    "nextStep": "Étape suivante"
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire",
+    "invalidEmail": "Veuillez entrer une adresse e-mail valide",
+    "minLength": "Doit comporter au moins {{min}} caractères"
+  },
+  "admin": {
+    "title": "Tableau de bord Admin",
+    "logout": "Déconnexion",
+    "login": "Connexion",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "loginButton": "Se connecter",
+    "loginTitle": "Connexion Admin",
+    "quotes": "Demandes de devis",
+    "stats": "Statistiques",
+    "totalRequests": "Total des demandes",
+    "topService": "Service principal",
+    "emailsSent": "E-mails envoyés",
+    "search": "Rechercher par nom, e-mail ou société...",
+    "filterService": "Filtrer par service",
+    "allServices": "Tous les services",
+    "from": "Du",
+    "to": "Au",
+    "noData": "Aucune demande de devis trouvée.",
+    "name": "Nom",
+    "emailCol": "E-mail",
+    "services": "Services",
+    "timeline": "Délai",
+    "budget": "Budget",
+    "status": "Statut e-mail",
+    "date": "Date",
+    "actions": "Actions",
+    "view": "Voir",
+    "close": "Fermer",
+    "detailTitle": "Détails du devis",
+    "servicesBreakdown": "Répartition par service",
+    "last30Days": "Activité des 30 derniers jours",
+    "noStats": "Aucune statistique disponible.",
+    "showing": "Affichage {{from}}–{{to}} sur {{total}}",
+    "signingIn": "Connexion en cours...",
+    "loginFailed": "Échec de la connexion"
+  },
+  "language": "Langue",
+  "footer": {
+    "subscribe": "S'abonner",
+    "emailPlaceholder": "Entrez votre e-mail"
+  }
+}

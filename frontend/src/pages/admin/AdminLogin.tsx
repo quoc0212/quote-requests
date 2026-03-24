@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useAuth } from '../../contexts/AuthContext';
-import { api } from '../../services/api';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useAuth } from "../../contexts/AuthContext";
+import { api } from "../../services/api";
 
 const AdminLogin: React.FC = () => {
   const { t } = useTranslation();
   const { login } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +19,7 @@ const AdminLogin: React.FC = () => {
       const res = await api.login(email, password);
       login(res.token, res.email);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Login failed');
+      setError(err instanceof Error ? err.message : t("admin.loginFailed"));
     } finally {
       setLoading(false);
     }
@@ -28,15 +28,21 @@ const AdminLogin: React.FC = () => {
   return (
     <div className="login-page">
       <div className="login-card">
-        <div className="login-card__logo">Quotify<span>.</span></div>
-        <p className="login-card__subtitle">{t('admin.loginTitle')}</p>
+        <div className="login-card__logo">
+          Quote Requerst Admin<span></span>
+        </div>
+        <p className="login-card__subtitle">{t("admin.loginTitle")}</p>
 
-        {error && <div className="login-error" role="alert">{error}</div>}
+        {error && (
+          <div className="login-error" role="alert">
+            {error}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} noValidate>
           <div className="form-group mb-2">
             <label className="form-label" htmlFor="admin-email">
-              {t('admin.email')} <span className="form-label__required">*</span>
+              {t("admin.email")} <span className="form-label__required">*</span>
             </label>
             <input
               id="admin-email"
@@ -44,7 +50,7 @@ const AdminLogin: React.FC = () => {
               className="form-input"
               placeholder="admin@example.com"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
               required
             />
@@ -52,7 +58,8 @@ const AdminLogin: React.FC = () => {
 
           <div className="form-group mb-2">
             <label className="form-label" htmlFor="admin-password">
-              {t('admin.password')} <span className="form-label__required">*</span>
+              {t("admin.password")}{" "}
+              <span className="form-label__required">*</span>
             </label>
             <input
               id="admin-password"
@@ -60,7 +67,7 @@ const AdminLogin: React.FC = () => {
               className="form-input"
               placeholder="••••••••"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
               required
             />
@@ -71,7 +78,7 @@ const AdminLogin: React.FC = () => {
             className="btn btn--primary btn--full mt-2"
             disabled={loading || !email || !password}
           >
-            {loading ? 'Signing in...' : t('admin.loginButton')}
+            {loading ? t("admin.signingIn") : t("admin.loginButton")}
           </button>
         </form>
       </div>

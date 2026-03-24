@@ -88,7 +88,9 @@ const AdminDashboard: React.FC = () => {
   const formatDate = (iso: string) => new Date(iso).toLocaleDateString();
 
   const toggleLang = () => {
-    i18n.changeLanguage(i18n.language.startsWith("vi") ? "en" : "vi");
+    const langs = ["en", "vi", "fr"];
+    const idx = langs.findIndex((l) => i18n.language.startsWith(l));
+    i18n.changeLanguage(langs[(idx + 1) % langs.length]);
   };
 
   const sentCount =
@@ -107,24 +109,20 @@ const AdminDashboard: React.FC = () => {
             className={`admin-nav-item${activeTab === "quotes" ? " admin-nav-item--active" : ""}`}
             onClick={() => setActiveTab("quotes")}
           >
-            <span className="admin-nav-item__icon">📋</span>
             {t("admin.quotes")}
           </button>
           <button
             className={`admin-nav-item${activeTab === "stats" ? " admin-nav-item--active" : ""}`}
             onClick={() => setActiveTab("stats")}
           >
-            <span className="admin-nav-item__icon">📊</span>
             {t("admin.stats")}
           </button>
           <button className="admin-nav-item" onClick={toggleLang}>
-            <span className="admin-nav-item__icon">🌐</span>
             {t("language")}
           </button>
         </nav>
         <div className="admin-sidebar__bottom">
           <button className="admin-nav-item" onClick={logout}>
-            <span className="admin-nav-item__icon">🚪</span>
             {t("admin.logout")}
           </button>
         </div>
@@ -156,9 +154,6 @@ const AdminDashboard: React.FC = () => {
               <>
                 <div className="stats-grid">
                   <div className="stat-card">
-                    <div className="stat-card__icon stat-card__icon--blue">
-                      📋
-                    </div>
                     <div>
                       <div className="stat-card__label">
                         {t("admin.totalRequests")}
@@ -167,9 +162,6 @@ const AdminDashboard: React.FC = () => {
                     </div>
                   </div>
                   <div className="stat-card">
-                    <div className="stat-card__icon stat-card__icon--green">
-                      ✅
-                    </div>
                     <div>
                       <div className="stat-card__label">
                         {t("admin.emailsSent")}
@@ -178,9 +170,6 @@ const AdminDashboard: React.FC = () => {
                     </div>
                   </div>
                   <div className="stat-card">
-                    <div className="stat-card__icon stat-card__icon--purple">
-                      🏆
-                    </div>
                     <div>
                       <div className="stat-card__label">
                         {t("admin.topService")}
@@ -204,7 +193,7 @@ const AdminDashboard: React.FC = () => {
                     className="table-card__title"
                     style={{ marginBottom: "1rem", fontWeight: 700 }}
                   >
-                    Services Breakdown
+                    {t("admin.servicesBreakdown")}
                   </div>
                   {stats.by_service.map((item) => {
                     const pct =
@@ -257,7 +246,7 @@ const AdminDashboard: React.FC = () => {
                 {/* Recent activity */}
                 <div className="table-card" style={{ padding: "1.5rem" }}>
                   <div style={{ fontWeight: 700, marginBottom: "1rem" }}>
-                    Last 30 Days Activity
+                    {t("admin.last30Days")}
                   </div>
                   <div
                     style={{
@@ -295,7 +284,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
               </>
             ) : (
-              <div className="no-data">No statistics available.</div>
+              <div className="no-data">{t("admin.noStats")}</div>
             ))}
 
           {/* Quotes Tab */}
@@ -442,12 +431,14 @@ const AdminDashboard: React.FC = () => {
                   {/* Pagination */}
                   <div className="pagination">
                     <span>
-                      Showing {(pagination.page - 1) * pagination.limit + 1}–
-                      {Math.min(
-                        pagination.page * pagination.limit,
-                        pagination.total,
-                      )}{" "}
-                      of {pagination.total}
+                      {t("admin.showing", {
+                        from: (pagination.page - 1) * pagination.limit + 1,
+                        to: Math.min(
+                          pagination.page * pagination.limit,
+                          pagination.total,
+                        ),
+                        total: pagination.total,
+                      })}
                     </span>
                     <div className="pagination__controls">
                       <button

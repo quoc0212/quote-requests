@@ -138,7 +138,13 @@
     "actions": "Hành động",
     "view": "Xem",
     "close": "Đóng",
-    "detailTitle": "Chi tiết báo giá"
+    "detailTitle": "Chi tiết báo giá",
+    "servicesBreakdown": "Phân tích theo dịch vụ",
+    "last30Days": "Hoạt động 30 ngày qua",
+    "noStats": "Không có dữ liệu thống kê.",
+    "showing": "Hiển thị {{from}}–{{to}} trong {{total}}",
+    "signingIn": "Đang đăng nhập...",
+    "loginFailed": "Đăng nhập thất bại"
   },
   "language": "Ngôn ngữ",
   "footer": {
